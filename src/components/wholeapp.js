@@ -14,15 +14,22 @@ export default class StaticHalf extends React.Component{
             [event.target.name] : event.target.value
         })
     }
-    structchange=event=>{
+    resetitems=()=>{
         this.setState({
-
+            items:[]
+        })
+    }
+    additem=event=>{
+        this.setState({
+            items:[...this.state.items,{text:this.state.newItem,id:this.state.items.length+1}],
+            newItem:''
         })
     }
 
     render(){
         console.log(this.state);
         return(
+            <div className='app'>
             <div className='staticDiv'>
                 <div className='sitename'>
                     <h1>Data Structures & Algorithms Visualizer</h1>
@@ -38,14 +45,21 @@ export default class StaticHalf extends React.Component{
                             <option>Heap</option>
                         </select>
                         <input placeholder='New Item' name='newItem' value={this.state.newItem} type="text" onChange={this.inputchanges}/>
-                        <button>Add Item</button>
-                        <button>Reset</button>
+                        <button onClick={this.additem}>Add Item</button>
+                        <button onClick={this.resetitems}>Reset</button>
                     </div>
                     
                     <Algos />
-
                 </div>
             </div>
+
+                    {this.state.items.map(todo=>{
+                        return(
+                        <div>{todo.text},{todo.id}</div>
+                        )
+                    })}
+        </div>
+                    
         )
     }
 }
