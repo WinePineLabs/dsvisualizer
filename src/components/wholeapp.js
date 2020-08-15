@@ -1,6 +1,7 @@
 import React from 'react'
 import './static_half_style.css'
 import Algos from './algos'
+import Stack from './stack'
 export default class StaticHalf extends React.Component{
     
     state={
@@ -52,12 +53,10 @@ export default class StaticHalf extends React.Component{
                     <Algos />
                 </div>
             </div>
+            <div>
+                <Stack />
+            </div>
 
-                    {this.state.items.map(todo=>{
-                        return(
-                        <div>{todo.text},{todo.id}</div>
-                        )
-                    })}
         </div>
                     
         )
