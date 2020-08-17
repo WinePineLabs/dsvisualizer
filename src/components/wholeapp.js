@@ -3,7 +3,6 @@ import './static_half_style.css'
 import Algos from './algos'
 import Array from './array'
 export default class StaticHalf extends React.Component{
-    
     state={
         newItem:'',
         data:'BinaryTree',
@@ -21,12 +20,15 @@ export default class StaticHalf extends React.Component{
         })
     }
     additem=event=>{
+        if(this.state.items.length>12){
+            alert('Memory Stack Is Full');
+        }else{
         this.setState({
             items:[...this.state.items,{text:this.state.newItem,id:this.state.items.length+1}],
             newItem:''
         })
     }
-
+    }
     render(){
         return(
             <div className='app'>
@@ -56,8 +58,7 @@ export default class StaticHalf extends React.Component{
                 <Array elements={this.state.items} />
             </div>
 
-        </div>
-                    
+        </div>             
         )
     }
 }
