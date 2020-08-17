@@ -29,6 +29,11 @@ export default class StaticHalf extends React.Component{
         })
     }
     }
+    dynamicRender=()=>{
+        if(this.state.data==='Array'){
+            return <Array elements={this.state.items}/>
+        }
+    }
     render(){
         return(
             <div className='app'>
@@ -54,10 +59,7 @@ export default class StaticHalf extends React.Component{
                     <Algos />
                 </div>
             </div>
-            <div>
-                <Array elements={this.state.items} />
-            </div>
-
+                {this.dynamicRender()}
         </div>             
         )
     }
