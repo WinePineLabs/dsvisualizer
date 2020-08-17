@@ -1,7 +1,7 @@
 import React from 'react'
 import './static_half_style.css'
 import Algos from './algos'
-import Stack from './stack'
+import Array from './array'
 export default class StaticHalf extends React.Component{
     
     state={
@@ -28,7 +28,6 @@ export default class StaticHalf extends React.Component{
     }
 
     render(){
-        console.log(this.state);
         return(
             <div className='app'>
             <div className='staticDiv'>
@@ -40,7 +39,7 @@ export default class StaticHalf extends React.Component{
 
                     <div className='data'>
                         <select onChange={this.inputchanges} value={this.state.data} name="data" id="">
-                            <option>Stacks</option>
+                            <option>Array</option>
                             <option>BinaryTree</option>
                             <option>Trie</option>
                             <option>Heap</option>
@@ -54,7 +53,7 @@ export default class StaticHalf extends React.Component{
                 </div>
             </div>
             <div>
-                <Stack />
+                <Array elements={this.state.items} />
             </div>
 
         </div>
