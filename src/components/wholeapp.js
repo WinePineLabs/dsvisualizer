@@ -7,6 +7,7 @@ export default class StaticHalf extends React.Component{
         newItem:'',
         data:'BinaryTree',
         items:[],
+        showNums:false
     }
 
     inputchanges=event=>{
@@ -19,20 +20,35 @@ export default class StaticHalf extends React.Component{
             items:[]
         })
     }
-    additem=event=>{
-        if(this.state.items.length>12){
-            alert('Memory Stack Is Full');
-        }else{
+    showNumsChanger=()=>{
+        this.setState({showNums:!this.state.showNums})
+    }
+    addRandomNumbers=()=>{
+        let Newarray=[]
+        for(var i=0;i<30;i++){
+            Newarray=[...Newarray,{text:Math.floor(Math.random()*160),id:Newarray.length+1}];
+        }
         this.setState({
-            items:[...this.state.items,{text:this.state.newItem,id:this.state.items.length+1}],
-            newItem:''
+            items:Newarray
         })
     }
-    }
-    dynamicRender=()=>{
-        if(this.state.data==='Array'){
-            return <Array elements={this.state.items}/>
+    additem=event=>{
+        if(!/^[0-9]+$/.test(this.state.newItem)) {
+            alert("You did not enter a number.");
+        }else if(this.state.newItem>161){
+            alert("Please Enter A Small Number For Better Visualization. (<162)");
         }
+        else{
+            if(this.state.items.length>102){
+                alert('Memory Stack Is Full');
+            }else{
+            this.setState({
+                items:[...this.state.items,{text:this.state.newItem,id:this.state.items.length+1}],
+                newItem:''
+            })
+            {console.log(this.state.items)}
+        }
+    }
     }
     render(){
         return(
@@ -43,7 +59,6 @@ export default class StaticHalf extends React.Component{
                 </div>
 
                 <div className='options'>
-
                     <div className='data'>
                         <select onChange={this.inputchanges} value={this.state.data} name="data" id="">
                             <option>Array</option>
@@ -54,12 +69,15 @@ export default class StaticHalf extends React.Component{
                         <input placeholder='New Item' name='newItem' value={this.state.newItem} type="text" onChange={this.inputchanges}/>
                         <button onClick={this.additem}>Add Item</button>
                         <button onClick={this.resetitems}>Reset</button>
+                        <button onClick={this.showNumsChanger}>Show</button>
+                        <button onClick={this.addRandomNumbers}>Random</button>
                     </div>
-                    
                     <Algos />
                 </div>
             </div>
-                {this.dynamicRender()}
+            <div className='arrayarea'>
+                <Array show={this.state.showNums} elements={this.state.items} />
+            </div>
         </div>             
         )
     }
