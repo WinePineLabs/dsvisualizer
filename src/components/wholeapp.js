@@ -7,7 +7,8 @@ export default class StaticHalf extends React.Component{
         newItem:'',
         data:'BinaryTree',
         items:[],
-        showNums:false
+        showNums:false,
+        algo:'BubbleSort',
     }
 
     inputchanges=event=>{
@@ -25,8 +26,8 @@ export default class StaticHalf extends React.Component{
     }
     addRandomNumbers=()=>{
         let Newarray=[]
-        for(var i=0;i<30;i++){
-            Newarray=[...Newarray,{text:Math.floor(Math.random()*160),id:Newarray.length+1}];
+        for(var i=0;i<40;i++){
+            Newarray=[...Newarray,{text:Math.floor(Math.random()*160),color:'rosybrown',id:Newarray.length+1}];
         }
         this.setState({
             items:Newarray
@@ -43,12 +44,30 @@ export default class StaticHalf extends React.Component{
                 alert('Memory Stack Is Full');
             }else{
             this.setState({
-                items:[...this.state.items,{text:this.state.newItem,id:this.state.items.length+1}],
+                items:[...this.state.items,{text:this.state.newItem,color:'rosybrown',id:this.state.items.length+1}],
                 newItem:''
             })
-            {console.log(this.state.items)}
+            {console.log(this.state)}
         }
     }
+    }
+    runAlgo=()=>{
+
+        let length=this.state.items.length;
+        let array=this.state.items;
+        for(let i=0;i<length-1;i++){
+            for(let j=0;j<length-i-1;j++){    
+                if(array[j].text>array[j+1].text){
+                        let x = array[j + 1].text
+                        array[j + 1].text = array[j].text
+                        array[j].text = x
+                        this.setState({
+                            items: array
+                        })
+                    }
+            }
+        }
+        console.log(array)
     }
     render(){
         return(
@@ -57,7 +76,6 @@ export default class StaticHalf extends React.Component{
                 <div className='sitename'>
                     <h1>Data Structures & Algorithms Visualizer</h1>
                 </div>
-
                 <div className='options'>
                     <div className='data'>
                         <select onChange={this.inputchanges} value={this.state.data} name="data" id="">
@@ -72,7 +90,14 @@ export default class StaticHalf extends React.Component{
                         <button onClick={this.showNumsChanger}>Show</button>
                         <button onClick={this.addRandomNumbers}>Random</button>
                     </div>
-                    <Algos />
+                        <div className='algos'>
+                            <select onChange={this.inputchanges} value={this.state.algo} name="algo" id="">
+                                <option>Bubble-Sort</option>
+                                <option>Merge-Sort</option>
+                                <option>Quick-Sort</option>
+                            </select>
+                            <button onClick={this.runAlgo}>Apply</button>
+                        </div>
                 </div>
             </div>
             <div className='arrayarea'>

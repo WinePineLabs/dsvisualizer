@@ -61,11 +61,10 @@
 }
 .single-item{
     width: 40px;
-    background-color: bisque;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.4);
     animation:itemadd 0.1s;
-    transition: ease-out 0.2s all;
+    transition: ease-out 0.4s all;
 }
 .dynamic-half{
     display: flex;

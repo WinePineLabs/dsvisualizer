@@ -1,5 +1,6 @@
 import React from 'react'
 import './static_half_style.css'
+import { createPortal } from 'react-dom';
 
 export default class Array extends React.Component{
     displayElements=()=>
@@ -9,15 +10,17 @@ export default class Array extends React.Component{
             text=<h2>{element.text}</h2>
         }else{
             text=<h2></h2>
-        }  
-    return(<div style={ {height :`${parseInt(element.text)*(this.props.show?100:3)}px`}} className='single-item'>
+        } 
+    return(<div style={ {height :`${parseInt(element.text)*(this.props.show?100:3)}px`,backgroundColor:`${element.color}` 
+    }}
+            className='single-item'>
          {text}
         </div>)
         })
     render(){
         return(
             <div className='dynamic-half'>
-                    {this.displayElements()}
+                {this.displayElements()}
             </div>
         )
     }
