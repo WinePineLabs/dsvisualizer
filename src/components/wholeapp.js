@@ -9,6 +9,7 @@ export default class StaticHalf extends React.Component{
         items:[],
         showNums:false,
         algo:'BubbleSort',
+        speed:40
     }
 
     inputchanges=event=>{
@@ -19,15 +20,25 @@ export default class StaticHalf extends React.Component{
     resetitems=()=>{
         this.setState({
             items:[]
-        })
+        },()=>{window.location.reload(false)})
     }
     showNumsChanger=()=>{
         this.setState({showNums:!this.state.showNums})
     }
     addRandomNumbers=()=>{
+        if(!/^[0-9]+$/.test(this.state.newItem)) {
+            this.addNumbers(50);
+        }else if(this.state.newItem>111){
+            this.addNumbers(50);
+        }
+        else{
+            this.addNumbers(this.state.newItem);
+        }
+    }
+    addNumbers=(x)=>{
         let Newarray=[]
-        for(var i=0;i<40;i++){
-            Newarray=[...Newarray,{text:Math.floor(Math.random()*160),color:'rosybrown',id:Newarray.length+1}];
+        for(var i=0;i<x;i++){
+            Newarray=[...Newarray,{text:Math.floor(Math.random()*160),color:'rosybrown',id:Newarray.length+1}]
         }
         this.setState({
             items:Newarray
@@ -47,29 +58,40 @@ export default class StaticHalf extends React.Component{
                 items:[...this.state.items,{text:this.state.newItem,color:'rosybrown',id:this.state.items.length+1}],
                 newItem:''
             })
-            {console.log(this.state)}
         }
     }
     }
-    runAlgo=()=>{
-
-        let length=this.state.items.length;
+    runAlgo=(i,j)=>{
+        console.log(this.state.length,i,j);
+        const length=this.state.items.length;
         let array=this.state.items;
-        for(let i=0;i<length-1;i++){
-            for(let j=0;j<length-i-1;j++){    
-                if(array[j].text>array[j+1].text){
-                        let x = array[j + 1].text
-                        array[j + 1].text = array[j].text
-                        array[j].text = x
-                        this.setState({
-                            items: array
-                        })
-                    }
-            }
+        if(array[j].text>array[j+1].text){
+            let x = array[j + 1].text;
+            this.state.items[j].color='rgba(200,0,0,0.7)';
+            this.state.items[j+1].color='rgba(200,0,0,0.7)';
+            array[j + 1].text = array[j].text;
+            array[j].text = x;
+        }else{
+            this.state.items[j].color='rgba(0,0,200,0.7)';
+            this.state.items[j+1].color='rgba(0,0,200,0.7)';
         }
-        console.log(array)
+        j++;
+        if(j==length-i-1){
+            this.state.items[j].color='rgba(0,200,0,0.6)';
+            i++;j=0;
+        }
+        if(i==length-1){
+            this.state.items[0].color='rgba(0,200,0,0.6)';
+            this.state.items[1].color='rgba(0,200,0,0.6)';
+            this.forceUpdate(); 
+            return;
+        }
+        setTimeout(()=>{
+            this.setState({items:array},()=>{this.runAlgo(i,j)})
+        },this.state.speed)
     }
     render(){
+        console.log(this.state.speed)
         return(
             <div className='app'>
             <div className='staticDiv'>
@@ -80,9 +102,6 @@ export default class StaticHalf extends React.Component{
                     <div className='data'>
                         <select onChange={this.inputchanges} value={this.state.data} name="data" id="">
                             <option>Array</option>
-                            <option>BinaryTree</option>
-                            <option>Trie</option>
-                            <option>Heap</option>
                         </select>
                         <input placeholder='New Item' name='newItem' value={this.state.newItem} type="text" onChange={this.inputchanges}/>
                         <button onClick={this.additem}>Add Item</button>
@@ -93,10 +112,13 @@ export default class StaticHalf extends React.Component{
                         <div className='algos'>
                             <select onChange={this.inputchanges} value={this.state.algo} name="algo" id="">
                                 <option>Bubble-Sort</option>
-                                <option>Merge-Sort</option>
-                                <option>Quick-Sort</option>
+                                <option disabled>Merge-Sort</option>
+                                <option disabled>Quick-Sort</option>
                             </select>
-                            <button onClick={this.runAlgo}>Apply</button>
+                            <button onClick={()=>{
+                                let x=0,y=0;
+                                this.runAlgo(x,y);}}>Apply</button>
+                                <input onChange={this.inputchanges} name="speed" value={this.state.speed} min="0.1" max="300" type="range"/>
                         </div>
                 </div>
             </div>
