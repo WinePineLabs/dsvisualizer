@@ -9,9 +9,14 @@ export default class StaticHalf extends React.Component{
         items:[],
         showNums:false,
         algo:'BubbleSort',
-        speed:40
+        speed:200
     }
-
+    componentDidUpdate(){
+        console.log("bruh")
+    }
+    componentDidMount(){
+        console.log("bruh")
+    }
     inputchanges=event=>{
         this.setState({
             [event.target.name] : event.target.value
@@ -28,7 +33,7 @@ export default class StaticHalf extends React.Component{
     addRandomNumbers=()=>{
         if(!/^[0-9]+$/.test(this.state.newItem)) {
             this.addNumbers(50);
-        }else if(this.state.newItem>111){
+        }else if(this.state.newItem>150){
             this.addNumbers(50);
         }
         else{
@@ -47,11 +52,11 @@ export default class StaticHalf extends React.Component{
     additem=event=>{
         if(!/^[0-9]+$/.test(this.state.newItem)) {
             alert("You did not enter a number.");
-        }else if(this.state.newItem>161){
-            alert("Please Enter A Small Number For Better Visualization. (<162)");
+        }else if(this.state.newItem>170){
+            alert("Please Enter A Small Number For Better Visualization. (<170)");
         }
         else{
-            if(this.state.items.length>102){
+            if(this.state.items.length>149){
                 alert('Memory Stack Is Full');
             }else{
             this.setState({
@@ -62,7 +67,6 @@ export default class StaticHalf extends React.Component{
     }
     }
     runAlgo=(i,j)=>{
-        console.log(this.state.length,i,j);
         const length=this.state.items.length;
         let array=this.state.items;
         if(array[j].text>array[j+1].text){
@@ -91,12 +95,11 @@ export default class StaticHalf extends React.Component{
         },this.state.speed)
     }
     render(){
-        console.log(this.state.speed)
         return(
             <div className='app'>
             <div className='staticDiv'>
                 <div className='sitename'>
-                    <h1>Data Structures & Algorithms Visualizer</h1>
+                    <h1>Array & Algorithms Visualizer</h1>
                 </div>
                 <div className='options'>
                     <div className='data'>
@@ -116,9 +119,10 @@ export default class StaticHalf extends React.Component{
                                 <option disabled>Quick-Sort</option>
                             </select>
                             <button onClick={()=>{
+                                console.log("hehe")
                                 let x=0,y=0;
                                 this.runAlgo(x,y);}}>Apply</button>
-                                <input onChange={this.inputchanges} name="speed" value={this.state.speed} min="0.1" max="300" type="range"/>
+                                <input onChange={this.inputchanges} name="speed" value={this.state.speed} min="0.1" max="600" type="range"/>
                         </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ export default class Array extends React.Component{
         }else{
             text=<h2></h2>
         } 
-    return(<div style={ {height :`${parseInt(element.text)*(this.props.show?100:3)}px`,backgroundColor:`${element.color}` 
+    return(<div style={ {height :`${parseInt(element.text)*(this.props.show?100:window.screen.height/360)}px`,backgroundColor:`${element.color}` 
     }}
             className='single-item'>
          {text}

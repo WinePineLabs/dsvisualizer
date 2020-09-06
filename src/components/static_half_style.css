@@ -20,7 +20,7 @@
 }
 .options{
     display: flex;
-    margin-top: 5%;
+    margin-top: 2.5%;
     justify-content: space-evenly;
 }
 .options select{
