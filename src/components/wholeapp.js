@@ -1,6 +1,5 @@
 import React from 'react'
 import './static_half_style.css'
-import Algos from './algos'
 import Array from './array'
 export default class StaticHalf extends React.Component{
     state={
@@ -10,12 +9,6 @@ export default class StaticHalf extends React.Component{
         showNums:false,
         algo:'BubbleSort',
         speed:200
-    }
-    componentDidUpdate(){
-        console.log("bruh")
-    }
-    componentDidMount(){
-        console.log("bruh")
     }
     inputchanges=event=>{
         this.setState({
