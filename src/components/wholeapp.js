@@ -96,13 +96,10 @@ export default class StaticHalf extends React.Component{
                 </div>
                 <div className='options'>
                     <div className='data'>
-                        <select onChange={this.inputchanges} value={this.state.data} name="data" id="">
-                            <option>Array</option>
-                        </select>
-                        <input placeholder='New Item' name='newItem' value={this.state.newItem} type="text" onChange={this.inputchanges}/>
-                        <button onClick={this.additem}>Add Item</button>
-                        <button onClick={this.resetitems}>Reset</button>
-                        <button onClick={this.showNumsChanger}>Show</button>
+                        <input className='visible' placeholder='Value' name='newItem' value={this.state.newItem} type="text" onChange={this.inputchanges}/>
+                        <button className='visible' onClick={this.additem}>Add Item</button>
+                        <button className='visible' onClick={this.resetitems}>Reset</button>
+                        <button className='visible' onClick={this.showNumsChanger}>Show</button>
                         <button onClick={this.addRandomNumbers}>Random</button>
                     </div>
                         <div className='algos'>
@@ -121,6 +118,9 @@ export default class StaticHalf extends React.Component{
             </div>
             <div className='arrayarea'>
                 <Array show={this.state.showNums} elements={this.state.items} />
+            </div>
+            <div className='source'>
+                <a href="https://github.com/WinePineLabs/dsvisualizer" target="_blank">Source Code</a>
             </div>
         </div>             
         )

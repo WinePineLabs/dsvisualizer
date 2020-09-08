@@ -72,6 +72,12 @@
 .single-item h2{
     font-size: 0.8vw;
 }
+.source{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
 @keyframes itemadd{
     0%{
         opacity: 0;
@@ -80,5 +86,21 @@
     100%{
         opacity: 1;
         transform: translateY(0px);
+    }
+}
+@media only screen and (max-width: 600px){
+    .visible{
+        display: none;
+    }
+    .algos{
+        flex:2;
+    }
+}
+@media only screen and (max-width: 750px) and (orientation:landscape){
+    *{
+        overflow: scroll;
+    }
+    .staticDiv{
+        height: 30vh;
     }
 }
