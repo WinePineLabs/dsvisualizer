@@ -3,7 +3,6 @@ import './static_half_style.css'
 
 export default class Array extends React.Component{
     render(){
-        console.log(this.props.elements.length);
         return(
             <div className='dynamic-half'>
                 {
