@@ -163,7 +163,7 @@ export default class StaticHalf extends React.Component{
         }
         if(this.state.algo==='Merge-Sort'){
             return(
-                <h3 style={{textAlign:'center'}}>Time Complexity : O(n*log n)</h3>
+                <h3 style={{textAlign:'center',paddingTop:'1%'}}>Time Complexity : O(n*log n)</h3>
             )
         }
     }
