@@ -89,14 +89,23 @@ a{
     }
 }
 @media only screen and (max-width: 600px){
+    .sitename h1{
+        font-size: 4vh;
+    }
     *{
         overflow: scroll;
     }
     .visible{
         display: none;
     }
+    .staticDiv{
+        height: 30vh;
+    }
     .algos{
         flex:2;
+    }
+    .complexityHere{
+        font-size: 2vh;
     }
 }
 @media only screen and (max-width: 750px) and (orientation:landscape){
@@ -104,6 +113,6 @@ a{
         overflow: scroll;
     }
     .staticDiv{
-        height: 30vh;
+        height: 33vh;
     }
 }
